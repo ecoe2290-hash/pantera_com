@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accesorios de Fútbol Pro</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f2f2f2;
+}
+
+/* NAVBAR */
+nav {
+    background: #0b6623;
+    padding: 15px 40px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav h2 {
+    color: white;
+}
+
+header {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 50px;
+}
+
+header p {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+/* SECCIÓN PRODUCTOS */
+.section {
+    padding: 100px 40px;
+    text-align: center;
+}
+
+.section h2 {
+    margin-bottom: 40px;
+    font-size: 35px;
+    color: #0b6623;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card h3 {
+    margin: 15px 0;
+    color: #0b6623;
+}
+
+.card p {
+    padding: 0 20px 20px 20px;
+    font-size: 14px;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.8);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+.close {
+    float: right;
+    font-size: 22px;
+    cursor: pointer;
+    color: red;
+}
+
+/* FOOTER */
+footer {
+    background: #0b6623;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    header h1 {
+        font-size: 35px;
+    }
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <h2>⚽ Fútbol Pro Accesorios</h2>
+</nav>
+
+<header>
+    <div>
+        <h1>Accesorios Esenciales de Fútbol</h1>
+        <p>Conoce su función y mejora tu rendimiento en el campo</p>
+    </div>
+</header>
+
+<section class="section">
+    <h2>Nuestros Accesorios</h2>
+
+    <div class="grid">
+
+        <div class="card" onclick="openModal('balon')">
+            <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55">
+            <h3>Balón Profesional</h3>
+            <p>Elemento principal del juego.</p>
+        </div>
+
+        <div class="card" onclick="openModal('guantes')">
+            <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e">
+            <h3>Guantes de Portero</h3>
+            <p>Protección y mejor agarre.</p>
+        </div>
+
+        <div class="card" onclick="openModal('espinilleras')">
+            <img src="https://images.unsplash.com/photo-1604152135912-04a5799f6a8d">
+            <h3>Espinilleras</h3>
+            <p>Seguridad en cada jugada.</p>
+        </div>
+
+        <div class="card" onclick="openModal('botas')">
+            <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d">
+            <h3>Botas de Fútbol</h3>
+            <p>Mayor control y estabilidad.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-text"></p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Fútbol Pro | Página elaborada en HTML, CSS y JavaScript</p>
+</footer>
+
+<script>
+function openModal(producto) {
+    const modal = document.getElementById("modal");
+    const title = document.getElementById("modal-title");
+    const text = document.getElementById("modal-text");
+
+    if(producto === "balon") {
+        title.innerText = "Balón Profesional";
+        text.innerText = "Se utiliza para disputar el partido. Permite realizar pases, tiros y jugadas. Está diseñado con materiales resistentes para un mejor rendimiento en césped natural o sintético.";
+    }
+
+    if(producto === "guantes") {
+        title.innerText = "Guantes de Portero";
+        text.innerText = "Mejoran el agarre del balón y protegen las manos del portero ante tiros potentes. Incorporan tecnología antideslizante y acolchado especial.";
+    }
+
+    if(producto === "espinilleras") {
+        title.innerText = "Espinilleras";
+        text.innerText = "Protegen la parte frontal de la pierna contra golpes y entradas fuertes. Son obligatorias en competiciones oficiales.";
+    }
+
+    if(producto === "botas") {
+        title.innerText = "Botas de Fútbol";
+        text.innerText = "Calzado especializado con tacos para mejorar el agarre al terreno de juego y optimizar el control del balón.";
+    }
+
+    modal.style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById("modal");
+    if(event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
