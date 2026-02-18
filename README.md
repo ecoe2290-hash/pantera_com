@@ -1,1 +1,0 @@
-# pantera_com
